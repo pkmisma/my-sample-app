@@ -12,7 +12,7 @@ pipeline {
             }
              stage ('Build') {
              steps {  
-             sh 'docker build -t ismail/docker-image:"${BUILD_NUMBER}" .'
+             sh 'docker build . -t ismail/docker-image:"${BUILD_NUMBER}"'
              }
          }
          stage ('Deploy') {
