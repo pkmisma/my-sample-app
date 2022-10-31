@@ -2,33 +2,23 @@ pipeline {
     agent {
         label {
             label 'master'
-            customWorkspace "${JENKINS_HOME}/${BUILD_NUMBER}/"
+            customWorkspace "/var/lib/jenkins/workspace/CI-CD"
         }
-    }
-    environment {
-        Go111MODULE='on'
     }
      stages {
          stage ('Clone Repo') {
              steps {
-                 git 'https://github.com/kodekloudhub/go-webapp-sample.git'
+                 git 'https://github.com/pkmisma/my-sample-app.git'
              }
-             
             }
-         stage ('Run') {
-             steps {
-                 sh 'go test ./...'
-             }
-                 
-             }
              stage ('Build') {
              steps {
-             sh 'docker build -t adminturneddevops/go-webapp-sample .'
+             sh 'docker build -t ismail/docker-image:"${BUILD_NUMBER}" .'
              }
          }
          stage ('Deploy') {
              steps {
-                 sh "docker run -p 8090:8000 -d adminturneddevops/go-webapp-sample"
+                 sh "docker run -p 8090:8000 -d ismail/docker-image:"${BUILD_NUMBER}""
              }
          }
          }
