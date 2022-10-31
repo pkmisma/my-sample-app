@@ -18,7 +18,7 @@ pipeline {
          }
          stage ('Deploy') {
              steps {
-                 sh "docker run -p 8090:8000 -d ismail/docker-image:"${BUILD_NUMBER}""
+                 sh 'docker run -p 8090:8000 -d ismail/docker-image:"${BUILD_NUMBER}"'
              }
          }
          }
