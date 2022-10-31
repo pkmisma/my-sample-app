@@ -11,8 +11,7 @@ pipeline {
              }
             }
              stage ('Build') {
-             steps {
-             sh '/var/lib/jenkins/workspace/CI-CD'   
+             steps {  
              sh 'docker build -t ismail/docker-image:"${BUILD_NUMBER}" .'
              }
          }
