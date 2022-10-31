@@ -16,7 +16,7 @@ pipeline {
              sh 'sudo docker build -t ismail/docker-image:"${BUILD_NUMBER}" .'
              }
          }
-         stage ('Deploy') {
+         stage ('Deploy-stage') {
              steps {
                  sh 'sudo docker run -p 80:80 -d ismail/docker-image:"${BUILD_NUMBER}"'
              }
