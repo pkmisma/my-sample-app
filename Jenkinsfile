@@ -2,7 +2,6 @@ pipeline {
     agent {
         label {
             label 'master'
-            customWorkspace "/var/lib/jenkins/workspace/CI-CD"
         }
     }
      stages {
@@ -13,6 +12,7 @@ pipeline {
             }
              stage ('Build') {
              steps {
+             sh '/var/lib/jenkins/workspace/CI-CD'   
              sh 'docker build -t ismail/docker-image:"${BUILD_NUMBER}" .'
              }
          }
