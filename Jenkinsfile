@@ -1,25 +1,10 @@
 pipeline {
-    agent {
-        label {
-            label 'master'
-        }
-    }
+    agent any
      stages {
-         stage ('Clone Repo') {
+         stage ('build') {
              steps {
-                 git 'https://github.com/pkmisma/my-sample-app.git'
+                 echo 'hello world'
              }
             }
-             stage ('Build') {
-             steps {
-             sh '/var/lib/jenkins/workspace/CI-CD'   
-             sh 'docker build -t ismail/docker-image:"${BUILD_NUMBER}" .'
-             }
-         }
-         stage ('Deploy') {
-             steps {
-                 sh 'docker run -p 8090:8000 -d ismail/docker-image:"${BUILD_NUMBER}"'
-             }
-         }
          }
      }
